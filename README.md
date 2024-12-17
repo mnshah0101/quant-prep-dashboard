@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+# Quant Prep Dashboard
+
+A **Next.js** dashboard to track your quantitative preparation, featuring:
+
+1. **Books** with page tracking and target finish dates (pie charts).
+2. **LeetCode** daily solve tracking (line chart).
+3. **QuantGuide** daily solve tracking (line chart).
+4. **Zetamac** speed math tests (historical scores in a line chart).
+5. **Notes** section.
+6. **Editable Modal** where you can change or delete data in one place.
+7. **Dark Mode** UI (Tailwind-based).
+
+![Preview Screenshot](./screenshot.png)
+
+## Features
+1. **Pie Chart** per book showing pages read vs. remaining.
+2. **Target Finish Date** for each book → auto-calculated pages per day.
+3. **Daily Solves** for LeetCode & QuantGuide (accumulated by date).
+4. **Zetamac** historical line chart to log your test runs over time.
+5. **Notes** section for daily tasks or reminders.
+6. **Edit Modal** to bulk-edit all data or delete items (like books).
+7. **Local Storage** persistence — data remains on refresh.
+
+## Prerequisites
+
+- Node.js >= 16
+- npm or yarn
 
 ## Getting Started
 
-First, run the development server:
+1. **Clone** this repository:
+   ```bash
+   git clone https://github.com/yourusername/quant-prep-dashboard.git
+   ```
+2. **Install Dependencies**:
+   ```bash
+   cd quant-prep-dashboard
+   npm install
+   ```
+3. **Run Development Server**:
+   ```bash
+   npm run dev
+   ```
+   This starts the local dev server on [http://localhost:3000](http://localhost:3000).
+
+## Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+quant-prep-dashboard/
+├─ app/
+│  ├─ layout.js      # Global layout for Next.js App Router
+│  ├─ page.js        # Main dashboard page (QuantPrepDashboard component)
+│  ├─ globals.css    # Global Tailwind and CSS resets
+│  └─ ...            
+├─ components/ui/    # Reusable UI components (Card, Progress, etc.)
+├─ package.json
+└─ README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **page.js** includes the entire dashboard (Books, LeetCode, QuantGuide, Zetamac, Notes, etc.).
+- **Modal** logic is embedded in the same file for simplicity, but you can refactor to a dedicated component as needed.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## Key Dependencies
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Next.js** (App Router)  
+- **React & Recharts**: For charts (PieChart, LineChart, etc.).  
+- **Tailwind CSS**: For utility-based styling (dark mode classes, layout).  
+- **Lucide React**: For icons (book, code, calculator, etc.).  
 
-## Learn More
+## Usage
 
-To learn more about Next.js, take a look at the following resources:
+1. **Books**:  
+   - Add a title, total pages, current page, and optional finish date.  
+   - The pie chart updates to show read vs. remaining pages, and calculates pages/day if a finish date is set.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2. **LeetCode / QuantGuide**:  
+   - Log daily solve counts. Each day’s solves accumulate in a line chart.  
+   - Goals are set arbitrarily (200 for LeetCode, 100 for QuantGuide) in code.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3. **Zetamac**:  
+   - Input each test’s final score. The line chart tracks your historical runs.
 
-## Deploy on Vercel
+4. **Notes**:  
+   - A simple textarea for daily tasks or reminders.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+5. **Edit Modal**:  
+   - Click **“Edit All Data”** to open a modal that shows ephemeral copies of your data.  
+   - Add or delete books, or adjust your daily solves and Zetamac scores.  
+   - **Save** commits changes, **Cancel** discards them.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customizing
+
+- **Change Goals**:  
+  Edit the `leetGoal` and `quantGoal` in the code if you want different daily or total goals.
+- **Styling**:
+  - Tweak Tailwind classes (`bg-gray-900`, `text-gray-100`) to fine-tune dark mode.  
+  - Adjust chart stroke colors or tooltip backgrounds.
+- **Data Persistence**:
+  - Currently uses **localStorage**. If you need multi-device sync, consider a real backend or serverless DB.
+
+
