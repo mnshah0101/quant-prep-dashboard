@@ -307,7 +307,6 @@ export default function QuantPrepDashboard() {
   // Render
   // -------------------------------------
   return (
-  
     <div className="container mx-auto p-4">
       <h1 className="text-4xl font-bold mb-6 text-center">
         Quant Preparation Dashboard
@@ -620,14 +619,17 @@ export default function QuantPrepDashboard() {
       {/* Modal for Editing All Data */}
       {showModal && (
         <div
-          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-50 p-4"
           onClick={closeModal}
         >
           <div
-            className="bg-white rounded p-4 w-full max-w-4xl relative"
+            className="bg-white dark:bg-gray-800 rounded-lg w-full max-w-4xl relative"
             onClick={(e) => e.stopPropagation()}
           >
-            <h2 className="text-xl font-bold mb-4">Edit All Data</h2>
+            <div className="p-4">
+              <h2 className="text-xl font-bold mb-4">Edit All Data</h2>
+
+               <div className="max-h-[70vh] overflow-y-auto pr-4">
 
             {/* NOTES */}
             <div className="mb-4">
@@ -795,6 +797,12 @@ export default function QuantPrepDashboard() {
             </div>
           </div>
         </div>
+
+        </div>
+
+        </div>
+
+
       )}
     </div>
   );
